@@ -1,0 +1,27 @@
+<html>
+<head>
+    <style>
+      .section {text-align: center;}
+      table, td {
+              border: 1px solid black;
+      }
+    </style>
+</head>
+<body>
+  <div id="instr">
+    Click on an empty location to create a new state.<br>
+    Click on a state to edit whether it's an accept state, a reject
+    state, or neither.<br>
+    Drag and drop from one state to another to add a transition.<br>
+    Click a transition arrow to edit the transition symbols and the action
+    of each symbol<br>
+    Right click a state and then left click on an empty location to move the
+    state to that location.<br>
+  </div>
+  <div class="section" id="tm">
+    <canvas id="canvas"></canvas>
+  </div>
+  <script type="text/javascript" src="turing_machine.js"></script>
+</body>
+</html>
+
