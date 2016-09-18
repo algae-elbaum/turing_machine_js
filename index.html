@@ -1,27 +1,50 @@
 <html>
 <head>
-    <style>
-      .section {text-align: center;}
-      table, td {
-              border: 1px solid black;
-      }
-    </style>
+  <style>
+    <!-- Disable text selection since highlighted text can mess with clicking and dragging around the canvas.
+         http://stackoverflow.com/a/16805743/3753789 -->
+    body{
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="mouse_handlers.js"></script>
+  <script type="text/javascript" src="canvas.js"></script>
+  <script type="text/javascript" src="editors.js"></script>
+  <script type="text/javascript" src="turing_machine.js"></script>
 </head>
 <body>
   <div id="instr">
-    Click on an empty location to create a new state.<br>
-    Click on a state to edit whether it's an accept state, a reject
-    state, or neither.<br>
-    Drag and drop from one state to another to add a transition.<br>
-    Click a transition arrow to edit the transition symbols and the action
-    of each symbol<br>
-    Right click a state and then left click on an empty location to move the
-    state to that location.<br>
+    Click on an empty location to create a new state.
+    <br>
+    Click on a state to edit whether it's an accept state, a reject state, or neither.
+    <br>
+    Drag and drop from one state to another to add a transition.
+    <br>
+    Click a transition arrow to edit the transition symbols and the action of each symbol
+    <br>
+    Right click a state and then left click on an empty location to move the state to that location.
+    <br>
+    Curved arrows are obnoxious, so mutually connected states are not permitted
+    <br>
+    - (ie if there's a transition from state A to state B, there cannot be a transition from B to A.
+     Use an intermediate state with an &epsilon; transition to B to simulate one)
+    <br>
+    <br>
+    TODO (for editor): transition click detection, state and transition editors, saving/loading
+    machines, and undo/redo buttons, and relocating states.
+    <br>
+    After the editor, implementing running machines on input should barely require thought.
   </div>
   <div class="section" id="tm">
     <canvas id="canvas"></canvas>
   </div>
-  <script type="text/javascript" src="turing_machine.js"></script>
 </body>
 </html>
 
