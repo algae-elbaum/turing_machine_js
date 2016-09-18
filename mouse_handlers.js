@@ -51,7 +51,7 @@ function on_right_mousedown(e)
 
 function on_right_mouseup(e)
 {
-    console.log("right-click up);
+    console.log("right-click up");
 }
 
 // HELPERS
