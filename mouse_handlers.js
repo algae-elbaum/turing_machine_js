@@ -57,7 +57,6 @@ function left_mouseup(e)
 
 function right_mouseup(e)
 {
-    console.log("right-click up");
     set_offset(e);
     var mouseX = e.offsetX;
     var mouseY = e.offsetY;

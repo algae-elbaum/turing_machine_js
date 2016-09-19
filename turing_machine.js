@@ -29,6 +29,7 @@ function new_state(x, y)
 {
     var n_state = new State(x, y);
     states.push(n_state);
+    push_undo(n_state);
 }
 
 function new_transition(src, dest)
@@ -52,5 +53,7 @@ function new_transition(src, dest)
             return;
         }
     }
-    src.transitions.push(new Transition(src, dest));
+    transition = new Transition(src, dest);
+    src.transitions.push(transition);
+    push_undo(transition);
 }

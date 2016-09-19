@@ -17,6 +17,7 @@
   <script type="text/javascript" src="mouse_handlers.js"></script>
   <script type="text/javascript" src="canvas.js"></script>
   <script type="text/javascript" src="editors.js"></script>
+  <script type="text/javascript" src="undo_redo.js"></script>
   <script type="text/javascript" src="turing_machine.js"></script>
 </head>
 <body>
@@ -37,11 +38,15 @@
      Use an intermediate state with an &epsilon; transition to B to simulate one)
     <br>
     <br>
-    TODO (for editor): state and transition editors, saving/loading machines, and undo/redo buttons.
+    TODO (for editor): state/transition editors and saving/loading machines.
     <br>
     After the editor, implementing running machines on input should barely require thought.
   </div>
-  <div class="section" id="tm">
+  <div class="section" id="editor">
+    <div style="display:inline-block;">
+      <button onclick="undo()">undo</button>
+      <button onclick="redo()">redo</button>
+    </div>
     <canvas id="canvas"></canvas>
   </div>
 </body>
