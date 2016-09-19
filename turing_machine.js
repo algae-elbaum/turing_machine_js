@@ -7,9 +7,6 @@ $(function()
 
 
 var states = [];
-var rad = 25;
-var arrow_body = 6;
-var arrow_head = 5;
 
 function State(x, y)
 {
@@ -20,8 +17,9 @@ function State(x, y)
     this.color = "blue";
 }
 
-function Transition(dest)
+function Transition(src, dest)
 {
+    this.src = src;
     this.dest = dest;
     this.actions = {}
 }
@@ -53,5 +51,5 @@ function new_transition(src, dest)
             return;
         }
     }
-    src.transitions.push(new Transition(dest));
+    src.transitions.push(new Transition(src, dest));
 }

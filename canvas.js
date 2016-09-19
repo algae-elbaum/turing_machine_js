@@ -2,6 +2,10 @@
 // I started this when that's all I knew, and at this point it wouldn't be worth
 // it to start using even jquery
 
+var rad = 25;
+var arrow_body = 6;
+var arrow_head = 5;
+
 function initCanvas()
 {
     var c = document.getElementById("canvas");
@@ -79,6 +83,52 @@ function draw()
         {
             var t = s.transitions[t_idx];
             drawArrow(s.x, s.y, t.dest.x, t.dest.y);
+        }
+    }
+}
+
+function dist(v, w)
+{
+    dx = v.x - w.x;
+    dy = v.y - w.y;
+    return Math.sqrt(dx*dx + dy*dy);
+};
+
+function dist_to_segment(p, v, w)
+{
+    var len = dist(v, w);
+    if (len == 0)
+    {
+        return dist(p, v);
+    }
+    var t = ((p.x - v.x) * (w.x - v.x) + (p.y - v.y) * (w.y - v.y)) / (len*len);
+    console.log(t);
+    t = Math.max(0, Math.min(1, t));
+    dist_sq = dist(p, { x: v.x + t * (w.x - v.x),
+                        y: v.y + t * (w.y - v.y) });
+    return Math.sqrt(dist_sq);
+}
+
+function get_object(x, y)
+{
+    transitions = [];
+    for (s_idx in states)
+    {
+        var s = states[s_idx];
+        if (dist({x:x, y:y}, s) <= rad)
+        {
+            return s;
+        }
+        transitions = transitions.concat(s.transitions);
+    }
+    for (t_idx in transitions)
+    {
+        var t = transitions[t_idx];
+        var dist_to_transition = dist_to_segment({x:x, y:y}, t.src, t.dest);
+        console.log(dist_to_transition);
+        if (dist_to_transition < arrow_body/2)
+        {
+            return t;
         }
     }
 }

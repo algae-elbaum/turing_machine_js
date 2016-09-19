@@ -66,24 +66,6 @@ function set_offset(e)
     }
 }
 
-function get_object(x, y)
-{
-    dist = function(x1, y1, x2, y2)
-    {
-        dx = x1 - x2;
-        dy = y1 - y2;
-        return Math.sqrt(dx*dx + dy*dy);
-    };
-    for (s_idx in states)
-    {
-        var s = states[s_idx];
-        if (dist(x, y, s.x, s.y) <= rad)
-        {
-            return s;
-        }
-    }
-}
-
 // Not quite what type means, but it's appropriate in this context
 function is_type(obj, constructor)
 {
