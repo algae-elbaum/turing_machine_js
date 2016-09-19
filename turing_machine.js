@@ -2,6 +2,7 @@ $(function()
 {
     $("#canvas").mousedown(on_mousedown);
     $("#canvas").mouseup(on_mouseup);
+    $("#canvas").bind("contextmenu", function(){return false;});
     initCanvas();
 });
 

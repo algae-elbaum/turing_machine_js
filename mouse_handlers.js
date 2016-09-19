@@ -1,5 +1,6 @@
-// var shared between mouse action handlers
+// vars shared between mouse action handlers
 var clicked_object;
+var right_clicked_object;
 
 function on_mousedown(e)
 {
@@ -9,6 +10,19 @@ function on_mousedown(e)
 }
 
 function on_mouseup(e)
+{
+    if (e.button === 0)
+    {
+        left_mouseup(e);
+    }
+    else if (e.button === 2)
+    {
+        right_mouseup(e);
+    }
+    draw();
+}
+
+function left_mouseup(e)
 {
     set_offset(e);
     var mouseX = e.offsetX;
@@ -39,19 +53,24 @@ function on_mouseup(e)
     }
 
     clicked_object = undefined;
-    draw();
-    return;
 }
 
-
-function on_right_mousedown(e)
-{
-    console.log("right-click down");
-}
-
-function on_right_mouseup(e)
+function right_mouseup(e)
 {
     console.log("right-click up");
+    set_offset(e);
+    var mouseX = e.offsetX;
+    var mouseY = e.offsetY;
+    if (!right_clicked_object)
+    {
+        right_clicked_object = get_object(mouseX, mouseY);
+    }
+    else
+    {
+       right_clicked_object.x = mouseX;
+       right_clicked_object.y = mouseY;
+       right_clicked_object = undefined;
+    }
 }
 
 // HELPERS

@@ -66,6 +66,8 @@ function draw()
     var c = document.getElementById("canvas");
     var ctx = c.getContext("2d");
 
+    ctx.fillStyle = '#d3d3d3';
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     // Draw states
     for (s_idx in states)
     {
