@@ -36,18 +36,18 @@ function left_mouseup(e)
             new_state(mouseX, mouseY);
         }
     }
-    else if (is_type(clicked_object, State))
+    else if (is_type(clicked_object, "state"))
     {
         if (clicked_object === declicked_object)
         {
             edit_state(clicked_object);
         }
-        else if (is_type(declicked_object, State))
+        else if (is_type(declicked_object, "state"))
         {
             new_transition(clicked_object, declicked_object);
         }
     } 
-    else if (is_type(clicked_object, Transition) && clicked_object === declicked_object)
+    else if (is_type(clicked_object, "transition") && clicked_object === declicked_object)
     {
         edit_transition(declicked_object)
     }
@@ -85,7 +85,7 @@ function set_offset(e)
 }
 
 // Not quite what type means, but it's appropriate in this context
-function is_type(obj, constructor)
+function is_type(obj, type)
 {
-    return obj && obj.constructor === constructor;
+    return obj && obj.type === type;
 }

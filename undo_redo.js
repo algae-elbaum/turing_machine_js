@@ -10,37 +10,43 @@ function push_undo(action)
 function undo()
 {
     action = undo_stack.pop();
-    if (action)
+    if (!action)
     {
-        redo_stack.push(action);
+        return;
     }
-    if (is_type(action, State))
+    redo_stack.push(action);
+    switch (action.type)
     {
-        states.pop();
+        case "state":
+            states.pop();
+            break;
+        case "transition":
+            action.src.transitions.pop();
+            break;
+        case "load":
+            states = action.old_states;
     }
-    else if (is_type(action, Transition))
-    {
-        action.src.transitions.pop();
-    }
-    // Deal with editor actions
     draw();
 }
 
 function redo()
 {
     action = redo_stack.pop();
-    if (action)
+    if (!action)
     {
-        undo_stack.push(action);
+        return;
     }
-    if (is_type(action, State))
+    undo_stack.push(action);
+    switch (action.type)
     {
-        states.push(action);
+        case "state":
+            states.push(action);
+            break;
+        case "transition":
+            action.src.transitions.push(action);
+            break;
+        case "load":
+            states = action.new_states;
     }
-    else if (is_type(action, Transition))
-    {
-        action.src.transitions.push(action);
-    }
-    // Deal with editor actions
     draw();
 }

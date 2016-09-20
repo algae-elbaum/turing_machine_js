@@ -104,7 +104,6 @@ function dist_to_segment(p, v, w)
         return dist(p, v);
     }
     var t = ((p.x - v.x) * (w.x - v.x) + (p.y - v.y) * (w.y - v.y)) / (len*len);
-    console.log(t);
     t = Math.max(0, Math.min(1, t));
     dist_sq = dist(p, { x: v.x + t * (w.x - v.x),
                         y: v.y + t * (w.y - v.y) });
@@ -127,7 +126,6 @@ function get_object(x, y)
     {
         var t = transitions[t_idx];
         var dist_to_transition = dist_to_segment({x:x, y:y}, t.src, t.dest);
-        console.log(dist_to_transition);
         if (dist_to_transition < arrow_body/2)
         {
             return t;

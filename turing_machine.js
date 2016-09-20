@@ -11,6 +11,7 @@ var states = [];
 
 function State(x, y)
 {
+    this.type = "state";
     this.x = x;
     this.y = y;
     this.transitions = [];
@@ -20,6 +21,7 @@ function State(x, y)
 
 function Transition(src, dest)
 {
+    this.type = "transition";
     this.src = src;
     this.dest = dest;
     this.actions = {}
